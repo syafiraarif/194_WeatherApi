@@ -40,12 +40,13 @@
                 method: "GET",
                 success: function (data) {
                     console.log(data);
-                    const v = document.getElementById("tampilan");
-                    const l = document.getElementById("Lokasi");
-                    let suhu = data.current.temp_c;
-                    let lokasi = data.location.name;
-                    v.innerHTML = suhu;
-                    l.innerHTML = lokasi;
+                    const tampil = `
+                        <div class="data-box">
+                            <div class="temp">${data.current.temp_c}°C</div>
+                            <div class="temp-small">${data.current.temp_f}°F</div>
+                            <div class="humidity">💧 Kelembapan: ${data.current.humidity}%</div>`;
+
+
                 },
                 fail: function (error) {
                     console.log(error);
