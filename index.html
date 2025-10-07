@@ -57,20 +57,16 @@
                             <div style="text-align:center;">
                                 <img src="${data.current.condition.icon}" alt="icon" width="64">
                             </div>
-                            
-
-                            `;
-
-                            
-
-
+                        </div>      
+                    `;
+                    $("#tampilan").html(tampil);
                 },
-                fail: function (error) {
-                    console.log(error);
-                },
-            })
-        }
-        
+                error: function (xhr) {
+                    $("#tampilan").html(`<p style="color:red;">Data tidak ditemukan. Pastikan nama kota benar.</p>`);
+                    console.error(xhr);
+                }
+            });
+        });
     </script>
 </body>
 
