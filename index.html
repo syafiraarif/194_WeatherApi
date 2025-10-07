@@ -95,16 +95,14 @@
             text-align: center;
         }
     </style>
-     
+
 </head>
 
 <body>
     <div class="container">
         <h2>🌤️ Weather Checker</h2>
-        <p>Masukan nama kota untuk melihat cuaca saat ini:</p>
-
+        
         <input type="text" id="inputLokasi" placeholder="Contoh: Yogyakarta">
-        <br>
         <button id="btnCari">Cari Cuaca</button>
 
         <div id="tampilan"></div>
@@ -127,21 +125,17 @@
                     console.log(data);
                     const tampil = `
                         <div class="data-box">
+                            <div class="section-title">Cuaca</div>
                             <div class="temp">${data.current.temp_c}°C</div>
                             <div class="temp-small">${data.current.temp_f}°F</div>
                             <div class="humidity">💧 Kelembapan: ${data.current.humidity}%</div>
                             
-                            <p><strong>🌍 Lokasi:</strong> ${data.location.name}</p>
+                            <div class="section-title">Lokasi</div>
                             <p><strong>🏴 Negara:</strong> ${data.location.country}</p>
                             <p><strong>📍 Provinsi:</strong> ${data.location.region}</p>
-                            <p><strong>🏘️ Kecamatan:</strong> ${data.location.tz_id}</p>
-                            
+                            <p><strong>🏘️ Kecamatan:</strong> ${data.location.tz_id}</p>                            
                             <p><strong>🧭 Longitude:</strong> ${data.location.lon}</p>
                             <p><strong>🧭 Latitude:</strong> ${data.location.lat}</p>
-                            <p><strong>🌈 Kondisi:</strong> ${data.current.condition.text}</p>
-                            <div style="text-align:center;">
-                                <img src="${data.current.condition.icon}" alt="icon" width="64">
-                            </div>
                         </div>      
                     `;
                     $("#tampilan").html(tampil);
@@ -154,5 +148,4 @@
         });
     </script>
 </body>
-
 </html>
