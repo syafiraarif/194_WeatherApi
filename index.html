@@ -7,16 +7,24 @@
     <title>Weather Checker</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
 
-<body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    Cuaca : <p id="Lokasi"></p>
-    <hr>
-    <div id="tampilan"></div>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🌤️ Weather Checker</h2>
+        <p>Masukan nama kota untuk melihat cuaca saat ini:</p>
+
+        <input type="text" id="inputLokasi" placeholder="Contoh: Yogyakarta">
+        <br>
+        <button id="btnCari">Cari Cuaca</button>
+
+        <div id="tampilan"></div>
+    </div>
 
     <script>
         const urlapi = "http://api.weatherapi.com/v1/current.json?key=02df0250ece14bf3a2c73610250710&q=Yogyakarta&aqi=no";
