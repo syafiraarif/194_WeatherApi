@@ -12,7 +12,7 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <style>
+    <style>
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #89f7fe, #66a6ff);
@@ -101,7 +101,7 @@
 <body>
     <div class="container">
         <h2>🌤️ Weather Checker</h2>
-        
+
         <input type="text" id="inputLokasi" placeholder="Contoh: Yogyakarta">
         <button id="btnCari">Cari Cuaca</button>
 
@@ -109,43 +109,48 @@
     </div>
 
     <script>
-        $("#btnCari").click(function() {
-            const lokasi = $("#inputLokasi").val();
-            if (lokasi === "") {
-                alert("Masukan nama kota terlebih dahulu!");
-                return;
-            }
+        $(document).ready(function () {
+            const apiKey = "02df0250ece14bf3a2c73610250710";
 
-            const urlapi = "http://api.weatherapi.com/v1/current.json?key=02df0250ece14bf3a2c73610250710&q=Yogyakarta&aqi=no";
-
-            $.ajax({
-                url: urlapi,
-                method: "GET",
-                success: function (data) {
-                    console.log(data);
-                    const tampil = `
-                        <div class="data-box">
-                            <div class="section-title">Cuaca</div>
-                            <div class="temp">${data.current.temp_c}°C</div>
-                            <div class="temp-small">${data.current.temp_f}°F</div>
-                            <div class="humidity">💧 Kelembapan: ${data.current.humidity}%</div>
-                            
-                            <div class="section-title">Lokasi</div>
-                            <p><strong>🏴 Negara:</strong> ${data.location.country}</p>
-                            <p><strong>📍 Provinsi:</strong> ${data.location.region}</p>
-                            <p><strong>🏘️ Kecamatan:</strong> ${data.location.tz_id}</p>                            
-                            <p><strong>🧭 Longitude:</strong> ${data.location.lon}</p>
-                            <p><strong>🧭 Latitude:</strong> ${data.location.lat}</p>
-                        </div>      
-                    `;
-                    $("#tampilan").html(tampil);
-                },
-                error: function (xhr) {
-                    $("#tampilan").html(`<p style="color:red;">Data tidak ditemukan. Pastikan nama kota benar.</p>`);
-                    console.error(xhr);
+            $("#btnCari").click(function () {
+                const lokasi = $("#inputLokasi").val();
+                if (lokasi === "") {
+                    alert("Masukkan nama kota terlebih dahulu!");
+                    return;
                 }
+
+                const urlApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lokasi}&aqi=no`;
+
+                $.ajax({
+                    url: urlApi,
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        const tampil = `
+                            <div class="data-box">
+                                <div class="section-title">Cuaca</div>
+                                <p class="temp">🌡️ Suhu: ${data.current.temp_c}°C</p>
+                                <p class="temp">🔥 Suhu (Fahrenheit): ${data.current.temp_f}°F</p>
+                                <p class="humidity">💧 Kelembapan: ${data.current.humidity}%</p>
+
+                                <div class="section-title">Lokasi</div>
+                                <p>🏴 Negara: ${data.location.country}</p>
+                                <p>📍 Provinsi (Region): ${data.location.region}</p>
+                                <p>🏘️ Zona Waktu: ${data.location.tz_id}</p>
+                                <p>🧭 Longitude: ${data.location.lon}</p>
+                                <p>🧭 Latitude: ${data.location.lat}</p>
+                            </div>
+                        `;
+                        $("#tampilan").html(tampil);
+                    },
+                    error: function (xhr) {
+                        $("#tampilan").html(`<p style="color:red;">Data tidak ditemukan. Pastikan nama kota benar.</p>`);
+                        console.error(xhr);
+                    }
+                });
             });
         });
     </script>
 </body>
+
 </html>
